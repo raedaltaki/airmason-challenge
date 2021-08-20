@@ -13,12 +13,13 @@ function Home(props) {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
     
-        if (!searchInput) {
+        if (!searchInput.search) {
+          window.alert("Enter search value");
           return false;
         }
     
         try {
-          const url = `https://www.omdbapi.com/?apikey=97b43746&s=${searchInput}`;
+          const url = `https://www.omdbapi.com/?apikey=97b43746&s=${searchInput.search}&type=${searchInput.type}&y=${searchInput.year}`;
           const response = await fetch(url);//searchInput);
     
           if (!response.ok) {
@@ -47,27 +48,78 @@ function Home(props) {
         }
       };
 
+      const handleChange = async (event) => {
+
+        const temp = {
+          search: searchInput.search,
+          type: searchInput.type,
+          year: searchInput.year,
+        };
+        if(event.target.name === 'searchInput') {
+          temp.search = event.target.value;
+        }
+        if(event.target.name === 'typeInput') {
+          temp.type = event.target.value;
+        }
+        if(event.target.name === 'yearInput') {
+          temp.year = event.target.value;
+        }
+        console.log(temp);
+        setSearchInput(temp);
+      }
+
 return (	
   <div>
     <div className='text-light bg-dark py-5'>
         <Container >
             <h1>Search for Movie!</h1>
             <Form onSubmit={handleFormSubmit}>
-                <Row>
+                <Row className='m-2'>
                     <Col xs={12} md={8}>
-                        <Form.Control
+                      <Form.Control
                         name='searchInput'
-                        defaultValue={searchInput}
-                        onChange={(e) => setSearchInput(e.target.value)}
+                        defaultValue={searchInput.search}
+                        onChange={handleChange}
                         type='text'
                         size='lg'
                         placeholder='Search for a movie'
-                        />
+                      />
                     </Col>
-                    <Col xs={12} md={4}>
-                        <Button type='submit' variant='success' size='lg'>
+                  </Row>
+
+                  <Row className='m-2'>
+                    <Col xs={12} md={8}>
+                      <Form.Select
+                        onChange={handleChange}
+                        name='typeInput'
+                        size='lg'
+                        placeholder='Search for a movie'
+                        defaultValue={searchInput.type}
+                      >
+                        <option value="">Select type</option>
+                        <option value="movie">Movie</option>
+                        <option value="series">Series</option>
+                        <option value="episode">Episode</option>
+                      </Form.Select>
+                    </Col>
+                  </Row>
+                  <Row className='m-2'>
+                    <Col xs={12} md={8}>
+                      <Form.Control
+                        name='yearInput'
+                        defaultValue={searchInput.year}
+                        onChange={handleChange}
+                        type='text'
+                        size='lg'
+                        placeholder='Enter a year'
+                      />
+                    </Col>
+                  </Row>
+                  <Row className='m-2'>
+                    <Col xs={12} md={8}>
+                      <Button type='submit' variant='success' size='lg'>
                         Search
-                        </Button>
+                      </Button>
                     </Col>
                 </Row>
             </Form>

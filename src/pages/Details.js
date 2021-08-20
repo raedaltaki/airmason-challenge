@@ -34,17 +34,17 @@ return (
     <div>
         <div className='text-light bg-dark py-5'>
             <Container >
+                <Link to="/" className="btn-lg btn-dark">{'<--Back'}</Link>
                 <h1>Movie Details</h1>
-                <Link to="/" className="btn btn-primary">back</Link>
             </Container>
         </div>
-        <Container className='my-4'>
+        <Container className='my-4 h5'>
             {movieDetails?
-            <Card border='dark'>
+            <Card style={{width:'600px'}} border='dark'>
             {movieDetails.Poster ? (
                 <Card.Img src={movieDetails.Poster} alt={`The image for ${movieDetails.Title}`} variant='top' />
             ) : null}
-                <Card.Title className='m-1'>{movieDetails.Title}</Card.Title>
+                <Card.Title className='m-2 h3'>{movieDetails.Title}</Card.Title>
 
                 <Card.Body className="m-3">
                     {/* <Card.Text> */}

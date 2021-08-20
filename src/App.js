@@ -6,7 +6,11 @@ import Details from './pages/Details';
 function App() {
 
   const [searchedMovies, setSearchedMovies] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState({
+    search:'',
+    type:'',
+    year:''
+  });
 
   return (
     <Router>

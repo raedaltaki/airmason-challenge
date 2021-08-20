@@ -17,6 +17,12 @@ function Home(props) {
           window.alert("Enter search value");
           return false;
         }
+
+          if (searchInput.year && !searchInput.year.match(/^(19\d\d|20\d\d)$/))
+          {
+            window.alert("Enter a valid year");
+            return false;          
+          }
     
         try {
           const url = `https://www.omdbapi.com/?apikey=97b43746&s=${searchInput.search}&type=${searchInput.type}&y=${searchInput.year}`;
@@ -62,16 +68,7 @@ function Home(props) {
           temp.type = event.target.value;
         }
         if(event.target.name === 'yearInput') {
-          if (+event.target.value >= 1900 & +event.target.value<2030)
-          {
             temp.year = event.target.value;
-          }
-          else          
-          {
-              console.log("enter a valid year");
-              temp.year = "";
-          }
-
         }
         console.log(temp);
         setSearchInput(temp);

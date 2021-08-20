@@ -62,7 +62,16 @@ function Home(props) {
           temp.type = event.target.value;
         }
         if(event.target.name === 'yearInput') {
-          temp.year = event.target.value;
+          if (+event.target.value >= 1900 & +event.target.value<2030)
+          {
+            temp.year = event.target.value;
+          }
+          else          
+          {
+              console.log("enter a valid year");
+              temp.year = "";
+          }
+
         }
         console.log(temp);
         setSearchInput(temp);

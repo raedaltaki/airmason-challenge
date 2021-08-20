@@ -12,7 +12,7 @@
 
 -   Clone the reprository (git clone https://github.com/raedaltaki/airmason-challenge.git)
 -   Install packages  (npm i)
--   Start the application (npm start)
+-   Start the server (npm start)
 -   Go to http://localhost:3000
 
 

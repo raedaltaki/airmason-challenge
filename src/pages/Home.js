@@ -21,6 +21,12 @@ function Home(props) {
           if (searchInput.year && !searchInput.year.match(/^(19\d\d|20\d\d)$/))
           {
             window.alert("Enter a valid year");
+            const temp = {
+              search: searchInput.search,
+              type: searchInput.type,
+              year: '',
+            };
+            setSearchInput(temp);
             return false;          
           }
     
